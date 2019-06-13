@@ -7,11 +7,7 @@ const numbers = [1, 2, 3];
 new Query().select().from(numbers).execute();
 // should return [1, 2, 3]
 ```
-```typescript
-const numbers = [1, 2, 3];
-new Query().select().from(numbers).execute();
-// should return [1, 2, 3]
-```
+
 ```typescript
 const students = [
     {
@@ -55,7 +51,27 @@ const students = [
 ]
 new Query().select('firstName').from(students).execute();
 /* should return [
-    'John',
-    'Marie',
+    {firstName :'John'},
+    {firstName :'Marie'},
+]*/
+```
+
+```typescript
+const students = [
+    {
+        firstName: 'John',
+        lastName: 'Doe',
+        age: 29
+    },
+    {
+        firstName: 'Marie',
+        lastName: 'Doe',
+        age: 36
+    }
+]
+new Query().select('firstName', 'lastName').from(students).execute();
+/* should return [
+    {firstName :'John', lastName: 'Doe'},
+    {firstName :'Marie', lastName: 'Doe'},
 ]*/
 ```

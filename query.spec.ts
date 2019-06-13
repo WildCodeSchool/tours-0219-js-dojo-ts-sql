@@ -44,4 +44,25 @@ test('Query with objects', () => {
 
 test('Query with objects and select', () => {
 
-})
+    const query = new Query();
+    const students = []
+
+    for (let i = 0; i < faker.random.number(10); i++) {
+        students.push(
+            {
+                firstName: faker.name.firstName(),
+                lastName: faker.name.lastName(),
+                age: faker.random.number(99)
+            }
+        )
+    }
+
+    const expectedResult = students.map(s =>{ 
+       return {'firstName': s.firstName};
+    });
+
+    const result = query.select('firstName').from(students).execute()
+    
+    expect(result).toBeDefined();
+    expect(result).toEqual(expectedResult);
+});
